@@ -5,10 +5,11 @@ import javax.persistence.Enumerated
 import javax.persistence.EnumType
 import javax.persistence.Id
 import javax.persistence.Lob
+import javax.persistence.Column
 
 @Entity
 class Incident(
-        @Id val key: Long,
+        @Id @Column(name="`key`") val key: Long,
         val errorType: String,
         @Lob val errorMessage: String,
         val workflowInstanceKey: Long,

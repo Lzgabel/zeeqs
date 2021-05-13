@@ -4,10 +4,11 @@ import javax.persistence.Entity
 import javax.persistence.Enumerated
 import javax.persistence.EnumType
 import javax.persistence.Id
+import javax.persistence.Column
 
 @Entity
 class Timer(
-        @Id val key: Long,
+        @Id @Column(name="`key`") val key: Long,
         val dueDate: Long,
         var repetitions: Int,
         val workflowInstanceKey: Long?,
