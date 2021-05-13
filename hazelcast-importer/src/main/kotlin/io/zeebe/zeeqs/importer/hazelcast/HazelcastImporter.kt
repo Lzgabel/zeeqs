@@ -188,20 +188,20 @@ class HazelcastImporter(
     private fun createElementInstance(record: Schema.ProcessInstanceRecord): ElementInstance {
         val bpmnElementType = when (record.bpmnElementType) {
 
-            "boundaryEvent" -> BpmnElementType.BOUNDARY_EVENT
-            "callActivity" -> BpmnElementType.CALL_ACTIVITY
-            "endEvent" -> BpmnElementType.END_EVENT
-            "eventBasedGateway" -> BpmnElementType.EVENT_BASED_GATEWAY
-            "exclusiveGateway" -> BpmnElementType.EXCLUSIVE_GATEWAY
-            "intermediateCatchEvent" -> BpmnElementType.INTERMEDIATE_CATCH_EVENT
-            "parallelGateway" -> BpmnElementType.PARALLEL_GATEWAY
-            "process" -> BpmnElementType.PROCESS
-            "receiveTask" -> BpmnElementType.RECEIVE_TASK
-            "sequenceFlow" -> BpmnElementType.SEQUENCE_FLOW
-            "serviceTask" -> BpmnElementType.SERVICE_TASK
-            "startEvent" -> BpmnElementType.START_EVENT
-            "subProcess" -> BpmnElementType.SUB_PROCESS
-            "userTask" -> BpmnElementType.USER_TASK
+            "BOUNDARY_EVENT" -> BpmnElementType.BOUNDARY_EVENT
+            "CALL_ACTIVITY" -> BpmnElementType.CALL_ACTIVITY
+            "END_EVENT" -> BpmnElementType.END_EVENT
+            "EVENT_BASED_GATEWAY" -> BpmnElementType.EVENT_BASED_GATEWAY
+            "EXCLUSIVE_GATEWAY" -> BpmnElementType.EXCLUSIVE_GATEWAY
+            "INTERMEDIATE_CATCH_EVENT" -> BpmnElementType.INTERMEDIATE_CATCH_EVENT
+            "PARALLEL_GATEWAY" -> BpmnElementType.PARALLEL_GATEWAY
+            "PROCESS" -> BpmnElementType.PROCESS
+            "RECEIVE_TASK" -> BpmnElementType.RECEIVE_TASK
+            "SEQUENCE_FLOW" -> BpmnElementType.SEQUENCE_FLOW
+            "SERVICE_TASK" -> BpmnElementType.SERVICE_TASK
+            "START_EVENT" -> BpmnElementType.START_EVENT
+            "SUB_PROCESS" -> BpmnElementType.SUB_PROCESS
+            "USER_TASK" -> BpmnElementType.USER_TASK
             else -> BpmnElementType.UNSPECIFIED
         }
 
