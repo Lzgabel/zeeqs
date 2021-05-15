@@ -46,6 +46,18 @@
       <scope>test</scope>
     </dependency>
 
+    <!--配置中心-->
+    <dependency>
+      <artifactId>shaman-configmap</artifactId>
+      <version>0.0.8-SNAPSHOT</version>
+      <groupId>com.shuwen.ops</groupId>
+    </dependency>
+    <dependency>
+      <groupId>com.shuwen.diamond</groupId>
+      <artifactId>diamond-spring-client</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+
   </dependencies>
 
   <build>

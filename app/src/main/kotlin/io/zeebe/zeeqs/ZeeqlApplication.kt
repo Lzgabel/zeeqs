@@ -1,5 +1,7 @@
 package io.zeebe.zeeqs
 
+import com.shuwen.diamond.spring.client.DiamondPropertySourceFactory
+import com.shuwen.ops.shaman.configmap.ShamanPropertySourceFactory
 import io.zeebe.zeeqs.importer.hazelcast.HazelcastImporter
 import io.zeebe.zeeqs.importer.hazelcast.HazelcastProperties
 import org.slf4j.LoggerFactory
@@ -7,10 +9,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 import org.springframework.cache.annotation.EnableCaching
+import org.springframework.context.annotation.PropertySource
+import org.springframework.context.annotation.PropertySources
 import javax.annotation.PostConstruct
 
 @SpringBootApplication
 @EnableCaching
+@PropertySources(value = [
+    PropertySource(name = "k8s-app", value = ["zeebe-zeeqs"], factory = ShamanPropertySourceFactory::class),
+    PropertySource(name = "diamond", value = [""], factory = DiamondPropertySourceFactory::class)]
+)
 @EnableConfigurationProperties(HazelcastProperties::class)
 class ZeeqlApplication(
         val hazelcastProperties: HazelcastProperties,
