@@ -8,7 +8,7 @@ type ElementInstance {
 
     state: ElementInstanceState!
 
-    workflowInstance: WorkflowInstance
+    processInstance: ProcessInstance
 
     scope: ElementInstance
 

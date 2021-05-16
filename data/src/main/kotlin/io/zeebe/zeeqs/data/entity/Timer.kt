@@ -11,9 +11,9 @@ class Timer(
         @Id @Column(name="`key`") val key: Long,
         val dueDate: Long,
         var repetitions: Int,
-        val workflowInstanceKey: Long?,
+        val processInstanceKey: Long?,
         val elementInstanceKey: Long?,
-        val workflowKey: Long?
+        val processDefinitionKey: Long?
 ) {
 
     @Enumerated(EnumType.STRING)

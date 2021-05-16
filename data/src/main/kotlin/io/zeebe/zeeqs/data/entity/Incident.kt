@@ -12,7 +12,7 @@ class Incident(
         @Id @Column(name="`key`") val key: Long,
         val errorType: String,
         @Lob val errorMessage: String,
-        val workflowInstanceKey: Long,
+        val processInstanceKey: Long,
         val elementInstanceKey: Long,
         val jobKey: Long?
 ) {

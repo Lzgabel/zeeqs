@@ -11,9 +11,9 @@ class MessageSubscription(
         @Id @Column(name="`key`") val key: Long,
         val messageName: String,
         val messageCorrelationKey: String?,
-        val workflowInstanceKey: Long?,
+        val processInstanceKey: Long?,
         val elementInstanceKey: Long?,
-        val workflowKey: Long?,
+        val processDefinitionKey: Long?,
         val elementId: String?
 ) {
 

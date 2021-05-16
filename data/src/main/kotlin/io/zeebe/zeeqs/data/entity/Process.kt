@@ -6,7 +6,7 @@ import javax.persistence.Lob
 import javax.persistence.Column
 
 @Entity
-data class Workflow(
+data class Process(
         @Id @Column(name="`key`") val key: Long,
         val bpmnProcessId: String,
         val version: Int,

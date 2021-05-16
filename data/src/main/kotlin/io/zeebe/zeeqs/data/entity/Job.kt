@@ -10,7 +10,7 @@ import javax.persistence.Column
 class Job(
         @Id @Column(name="`key`") val key: Long,
         val jobType: String,
-        val workflowInstanceKey: Long,
+        val processInstanceKey: Long,
         val elementInstanceKey: Long
 ) {
 

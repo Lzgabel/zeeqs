@@ -9,7 +9,7 @@ import javax.persistence.Column
 class Variable(
         @Id @Column(name="`key`") val key: Long,
         val name: String,
-        val workflowInstanceKey: Long,
+        val processInstanceKey: Long,
         val scopeKey: Long,
         @Lob var value: String,
         var timestamp: Long

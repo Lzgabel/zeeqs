@@ -10,7 +10,7 @@ class VariableUpdate(
         val variableKey: Long,
         val name: String,
         @Lob val value: String,
-        val workflowInstanceKey: Long,
+        val processInstanceKey: Long,
         val scopeKey: Long,
         val timestamp: Long
 )

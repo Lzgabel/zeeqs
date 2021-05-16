@@ -12,8 +12,8 @@ class ElementInstance(
         val elementId: String,
         @Enumerated(EnumType.STRING)
         val bpmnElementType: BpmnElementType,
-        val workflowInstanceKey: Long,
-        val workflowKey: Long,
+        val processInstanceKey: Long,
+        val processDefinitionKey: Long,
         val scopeKey: Long?
 ) {
 

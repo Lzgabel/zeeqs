@@ -14,7 +14,7 @@ type Job {
     # the time when the job was removed (completed/error-thrown/canceled)
     endTime(zoneId: String = "Z"): String
 
-    workflowInstance: WorkflowInstance
+    processInstance: ProcessInstance
     elementInstance: ElementInstance
 
     incidents: [Incident!]
