@@ -2,6 +2,7 @@ package io.zeebe.zeeqs.importer.hazelcast
 
 import com.hazelcast.client.HazelcastClient
 import com.hazelcast.client.config.ClientConfig
+import com.hazelcast.core.HazelcastInstance
 import io.zeebe.exporter.proto.Schema
 import io.zeebe.hazelcast.connect.java.ZeebeHazelcast
 import io.zeebe.zeeqs.data.entity.*
@@ -51,7 +52,7 @@ class HazelcastImporter(
 
         val clientConfig = ClientConfig()
         val networkConfig = clientConfig.networkConfig
-        networkConfig.addresses = listOf(hazelcastConnection)
+        networkConfig.addresses = hazelcastConnection.split(",")
 
         val connectionRetryConfig = clientConfig.connectionStrategyConfig.connectionRetryConfig
         connectionRetryConfig.clusterConnectTimeoutMillis = hazelcastConnectionTimeout.toMillis()

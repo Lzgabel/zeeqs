@@ -5,7 +5,8 @@ zeebe:
   client:
     worker:
       hazelcast:
-        connection: localhost:5701
+        # 连接点，多个逗号分隔
+        connection: localhost:5701,127.0.0.1:5701
         connectionTimeout: PT1M
         ringbuffer: zeebe
         connectionInitialBackoff: PT15S
