@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component
 
 @Component
 class TimerResolver(
-        val processRepository: ProcessRepository,
-        val processInstanceRepository: ProcessInstanceRepository,
-        val elementInstanceRepository: ElementInstanceRepository
+    val processRepository: ProcessRepository,
+    val processInstanceRepository: ProcessInstanceRepository,
+    val elementInstanceRepository: ElementInstanceRepository
 ) : GraphQLResolver<Timer> {
 
     fun startTime(timer: Timer, zoneId: String): String? {

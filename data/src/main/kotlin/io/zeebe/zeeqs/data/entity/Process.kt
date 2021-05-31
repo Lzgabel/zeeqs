@@ -11,4 +11,6 @@ data class Process(
         val bpmnProcessId: String,
         val version: Int,
         @Lob val bpmnXML: String,
-        val deployTime: Long)
+        val deployTime: Long,
+        val resourceName: String,
+        val checksum: String)

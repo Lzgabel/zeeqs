@@ -14,9 +14,9 @@ import org.springframework.stereotype.Component
 
 @Component
 class IncidentResolver(
-        val processInstanceRepository: ProcessInstanceRepository,
-        val jobRepository: JobRepository,
-        val elementInstanceRepository: ElementInstanceRepository
+    val processInstanceRepository: ProcessInstanceRepository,
+    val jobRepository: JobRepository,
+    val elementInstanceRepository: ElementInstanceRepository
 ) : GraphQLResolver<Incident> {
 
     fun creationTime(incident: Incident, zoneId: String): String? {

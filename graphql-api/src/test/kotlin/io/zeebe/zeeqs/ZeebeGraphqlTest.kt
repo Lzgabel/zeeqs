@@ -29,13 +29,17 @@ class ZeebeGraphqlTest(
     @Test
     fun `should query process`() {
         // given
-        processRepository.save(Process(
+        processRepository.save(
+            Process(
                 key = 1,
-                bpmnProcessId = "wf",
+                bpmnProcessId = "process",
                 version = 1,
                 bpmnXML = "<...>",
-                deployTime = Instant.now().toEpochMilli()
-        ));
+                deployTime = Instant.now().toEpochMilli(),
+                resourceName = "process.bpmn",
+                checksum = "checksum"
+            )
+        );
 
         // when
         val response = sendQuery("{processes{nodes{key,bpmnProcessId,version}}}")
@@ -47,7 +51,7 @@ class ZeebeGraphqlTest(
             {"processes":
             {"nodes":[
             {"key":"1",
-            "bpmnProcessId":"wf", 
+            "bpmnProcessId":"process", 
             "version":1}
             ]}}}""".trimIndent())
     }

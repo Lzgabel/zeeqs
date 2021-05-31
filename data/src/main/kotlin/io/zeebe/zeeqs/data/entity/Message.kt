@@ -9,6 +9,7 @@ import javax.persistence.Column
 @Entity
 class Message(
         @Id @Column(name="`key`") val key: Long,
+        val position: Long,
         val name: String,
         val correlationKey: String?,
         val messageId: String?,

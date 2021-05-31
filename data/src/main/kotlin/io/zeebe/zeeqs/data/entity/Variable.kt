@@ -7,10 +7,11 @@ import javax.persistence.Column
 
 @Entity
 class Variable(
-        @Id @Column(name="`key`") val key: Long,
-        val name: String,
-        val processInstanceKey: Long,
-        val scopeKey: Long,
-        @Lob var value: String,
-        var timestamp: Long
+    @Id @Column(name="`key`") val key: Long,,
+    val position: Long,
+    val name: String,
+    val processInstanceKey: Long,
+    val scopeKey: Long,
+    @Lob var value: String,
+    var timestamp: Long
 )

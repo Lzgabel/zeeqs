@@ -8,10 +8,11 @@ import javax.persistence.Column
 
 @Entity
 class Job(
-        @Id @Column(name="`key`") val key: Long,
-        val jobType: String,
-        val processInstanceKey: Long,
-        val elementInstanceKey: Long
+    @Id @Column(name="`key`") val key: Long,
+    val position: Long,
+    val jobType: String,
+    val processInstanceKey: Long,
+    val elementInstanceKey: Long
 ) {
 
     @Enumerated(EnumType.STRING)

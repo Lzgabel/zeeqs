@@ -14,9 +14,9 @@ import org.springframework.stereotype.Component
 
 @Component
 class JobResolver(
-        val processInstanceRepository: ProcessInstanceRepository,
-        val incidentRepository: IncidentRepository,
-        val elementInstanceRepository: ElementInstanceRepository
+    val processInstanceRepository: ProcessInstanceRepository,
+    val incidentRepository: IncidentRepository,
+    val elementInstanceRepository: ElementInstanceRepository
 ) : GraphQLResolver<Job> {
 
     fun timestamp(job: Job, zoneId: String): String? {

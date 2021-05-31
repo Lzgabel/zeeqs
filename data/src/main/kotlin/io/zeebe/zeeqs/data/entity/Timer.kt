@@ -8,12 +8,13 @@ import javax.persistence.Column
 
 @Entity
 class Timer(
-        @Id @Column(name="`key`") val key: Long,
-        val dueDate: Long,
-        var repetitions: Int,
-        val processInstanceKey: Long?,
-        val elementInstanceKey: Long?,
-        val processDefinitionKey: Long?
+    @Id @Column(name="`key`") val key: Long,,
+    val position: Long,
+    val dueDate: Long,
+    var repetitions: Int,
+    val processInstanceKey: Long?,
+    val elementInstanceKey: Long?,
+    val processDefinitionKey: Long?
 ) {
 
     @Enumerated(EnumType.STRING)

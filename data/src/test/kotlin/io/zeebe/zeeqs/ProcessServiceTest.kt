@@ -26,20 +26,24 @@ class ProcessServiceTest(
         // given
         val processDefinitionKey = 1L
 
-        val bpmn = Bpmn.createExecutableProcess("wf")
+        val bpmn = Bpmn.createExecutableProcess("process")
                 .startEvent("s").name("start")
                 .serviceTask("t").name("task")
                 .zeebeJobType("test")
                 .endEvent("e").name("")
                 .done()
 
-        processRepository.save(Process(
+        processRepository.save(
+            Process(
                 key = processDefinitionKey,
-                bpmnProcessId = "wf",
+                bpmnProcessId = "process",
                 version = 1,
                 bpmnXML = Bpmn.convertToString(bpmn),
-                deployTime = Instant.now().toEpochMilli()
-        ));
+                deployTime = Instant.now().toEpochMilli(),
+                resourceName = "process.bpmn",
+                checksum = "checksum"
+            )
+        );
 
         // when
         val info = processService.getBpmnElementInfo(processDefinitionKey)

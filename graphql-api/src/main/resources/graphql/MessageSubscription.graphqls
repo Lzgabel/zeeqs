@@ -22,8 +22,8 @@ type MessageCorrelation {
 }
 
 enum MessageSubscriptionState {
-    OPENED
+    CREATED
     CORRELATED
-    CLOSED
+    DELETED
 }
 

@@ -7,6 +7,7 @@ import io.zeebe.zeeqs.data.repository.ProcessRepository
 import io.zeebe.zeeqs.importer.hazelcast.HazelcastImporter
 import io.zeebe.zeeqs.importer.hazelcast.HazelcastProperties
 import org.assertj.core.api.Assertions.assertThat
+import org.awaitility.kotlin.await
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -59,26 +60,26 @@ class HazelcastImporterTest(
         // when
         client.newDeployCommand()
                 .addProcessModel(
-                        Bpmn.createExecutableProcess("wf")
+                        Bpmn.createExecutableProcess("process")
                                 .startEvent()
                                 .serviceTask("task-1").zeebeJobType("test")
                                 .endEvent()
                                 .done(),
-                        "wf.bpmn")
+                        "process.bpmn")
                 .send()
                 .join()
 
         // verify
-        waitUntilProcessIsImported()
-
-        assertThat(processRepository.findAll()).hasSize(1)
+        await.untilAsserted { assertThat(processRepository.findAll()).hasSize(1) }
 
         val process = processRepository.findAll().toList()[0]
         assertThat(process.key).isGreaterThan(0)
-        assertThat(process.bpmnProcessId).isEqualTo("wf")
+        assertThat(process.bpmnProcessId).isEqualTo("process")
         assertThat(process.version).isEqualTo(1)
         assertThat(process.deployTime).isGreaterThan(0)
         assertThat(process.bpmnXML).isNotEmpty()
+        assertThat(process.resourceName).isEqualTo("process.bpmn")
+        assertThat(process.checksum).isNotEmpty()
     }
 
     private fun waitUntilProcessIsImported() {

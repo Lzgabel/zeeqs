@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component
 
 @Component
 class ProcessInstanceResolver(
-        val processInstanceRepository: ProcessInstanceRepository,
-        val variableRepository: VariableRepository,
-        val processRepository: ProcessRepository,
-        val jobRepository: JobRepository,
-        val incidentRepository: IncidentRepository,
-        val elementInstanceRepository: ElementInstanceRepository,
-        val timerRepository: TimerRepository,
-        val messageSubscriptionRepository: MessageSubscriptionRepository
+    val processInstanceRepository: ProcessInstanceRepository,
+    val variableRepository: VariableRepository,
+    val processRepository: ProcessRepository,
+    val jobRepository: JobRepository,
+    val incidentRepository: IncidentRepository,
+    val elementInstanceRepository: ElementInstanceRepository,
+    val timerRepository: TimerRepository,
+    val messageSubscriptionRepository: MessageSubscriptionRepository
 ) : GraphQLResolver<ProcessInstance> {
 
     fun startTime(processInstance: ProcessInstance, zoneId: String): String? {

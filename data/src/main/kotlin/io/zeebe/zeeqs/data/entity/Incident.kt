@@ -10,6 +10,7 @@ import javax.persistence.Column
 @Entity
 class Incident(
         @Id @Column(name="`key`") val key: Long,
+        val position: Long,
         val errorType: String,
         @Lob val errorMessage: String,
         val processInstanceKey: Long,

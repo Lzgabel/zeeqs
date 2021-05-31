@@ -17,7 +17,7 @@ type ProcessInstance {
     variables: [Variable!]
     # the created jobs related to the process instance
     jobs(
-        stateIn: [JobState!] = [ACTIVATABLE, ACTIVATED, FAILED, COMPLETED, CANCELED, ERROR_THROWN]
+        stateIn: [JobState!] = [ACTIVATABLE, FAILED, COMPLETED, CANCELED, ERROR_THROWN]
         jobTypeIn: [String!] = []
     ): [Job!]
     # the created incidents related to the process instance
@@ -28,7 +28,7 @@ type ProcessInstance {
     childProcessInstances: [ProcessInstance!]
     # the created element instances (e.g. for start event, service task, etc.) of the process instance
     elementInstances(
-        stateIn: [ElementInstanceState] = [ACTIVATING, ACTIVATED, COMPLETING, COMPLETED, TERMINATING, TERMINATED, TAKEN, EVENT_OCCURRED]
+        stateIn: [ElementInstanceState] = [ACTIVATING, ACTIVATED, COMPLETING, COMPLETED, TERMINATING, TERMINATED, TAKEN]
     ): [ElementInstance!]
     # the scheduled timers related to the process instance (timer catch events)
     timers: [Timer!]
