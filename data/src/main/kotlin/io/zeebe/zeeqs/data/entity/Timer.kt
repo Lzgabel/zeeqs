@@ -8,7 +8,7 @@ import javax.persistence.Column
 
 @Entity
 class Timer(
-    @Id @Column(name="`key`") val key: Long,,
+    @Id @Column(name="`key`") val key: Long,
     val position: Long,
     val dueDate: Long,
     var repetitions: Int,

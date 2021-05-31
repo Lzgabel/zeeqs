@@ -7,7 +7,7 @@ import javax.persistence.Column
 
 @Entity
 class Variable(
-    @Id @Column(name="`key`") val key: Long,,
+    @Id @Column(name="`key`") val key: Long,
     val position: Long,
     val name: String,
     val processInstanceKey: Long,

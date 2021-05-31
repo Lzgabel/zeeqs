@@ -9,6 +9,7 @@ import javax.persistence.Column
 @Entity
 class ElementInstance(
         @Id @Column(name="`key`") val key: Long,
+        val position: Long,
         val elementId: String,
         @Enumerated(EnumType.STRING)
         val bpmnElementType: BpmnElementType,
