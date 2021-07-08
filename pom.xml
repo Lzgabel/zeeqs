@@ -25,15 +25,15 @@
   </modules>
 
   <properties>
-    <kotlin.version>1.5.10</kotlin.version>
+    <kotlin.version>1.5.20</kotlin.version>
 
     <zeebe.version>xhzy-1.0.0</zeebe.version>
 
-    <spring.boot.version>2.5.0</spring.boot.version>
+    <spring.boot.version>2.5.2</spring.boot.version>
 
     <hazelcast.exporter.version>xhzy-1.0.0</hazelcast.exporter.version>
     <!-- pin Hazelcast version because of spring-boot-dependencies -->
-    <version.hazelcast>4.2</version.hazelcast>
+    <version.hazelcast>4.2.1</version.hazelcast>
 
     <version.graphql>8.1.1</version.graphql>
     <version.graphql.tools>6.3.0</version.graphql.tools>
@@ -136,7 +136,7 @@
       <dependency>
         <groupId>org.awaitility</groupId>
         <artifactId>awaitility-kotlin</artifactId>
-        <version>4.0.3</version>
+        <version>4.1.0</version>
       </dependency>
 
       <!-- Kotlin deps -->
@@ -247,7 +247,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.1.2</version>
+        <version>3.2.0</version>
         <executions>
           <execution>
             <id>copy</id>
