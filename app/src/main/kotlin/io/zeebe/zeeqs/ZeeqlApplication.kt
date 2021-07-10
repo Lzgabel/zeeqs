@@ -13,12 +13,13 @@ import org.springframework.context.annotation.PropertySource
 import org.springframework.context.annotation.PropertySources
 import javax.annotation.PostConstruct
 
+fun main(args: Array<String>) {
+    runApplication<ZeeqlApplication>(*args)
+}
+
 @SpringBootApplication
 @EnableCaching
-@PropertySources(value = [
-    PropertySource(name = "k8s-app", value = ["zeebe-zeeqs"], factory = ShamanPropertySourceFactory::class),
-    PropertySource(name = "diamond", value = [""], factory = DiamondPropertySourceFactory::class)]
-)
+@PropertySource(name = "k8s-app", value = ["zeebe-zeeqs"], factory = ShamanPropertySourceFactory::class)
 @EnableConfigurationProperties(HazelcastProperties::class)
 class ZeeqlApplication(
         val hazelcastProperties: HazelcastProperties,
@@ -32,8 +33,4 @@ class ZeeqlApplication(
         hazelcastImporter.start(hazelcastProperties)
         logger.info("Connected to Hazelcast!")
     }
-}
-
-fun main(args: Array<String>) {
-    runApplication<ZeeqlApplication>(*args)
 }

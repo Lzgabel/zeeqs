@@ -9,9 +9,11 @@ import io.zeebe.exporter.proto.Schema
 import io.zeebe.exporter.proto.Schema.RecordMetadata.RecordType
 import io.zeebe.hazelcast.connect.java.ZeebeHazelcast
 import io.zeebe.zeeqs.data.entity.*
+import io.zeebe.zeeqs.data.entity.Timer
 import io.zeebe.zeeqs.data.repository.*
 import org.springframework.stereotype.Component
 import java.time.Duration
+import java.util.*
 
 
 @Component
@@ -38,6 +40,7 @@ class HazelcastImporter(
     fun start(hazelcastProperties: HazelcastProperties) {
 
         val hazelcastConnection = hazelcastProperties.connection
+        val deployEnv = hazelcastProperties.deployEnv
         val hazelcastConnectionTimeout = Duration.parse(hazelcastProperties.connectionTimeout)
         val hazelcastRingbuffer = hazelcastProperties.ringbuffer
         val hazelcastConnectionInitialBackoff =
@@ -45,22 +48,23 @@ class HazelcastImporter(
         val hazelcastConnectionBackoffMultiplier = hazelcastProperties.connectionBackoffMultiplier
         val hazelcastConnectionMaxBackoff = Duration.parse(hazelcastProperties.connectionMaxBackoff)
 
-        val hazelcastConfig = hazelcastConfigRepository.findById(hazelcastConnection)
+        val config = HazelcastConfig(hazelcastConnection, deployEnv, -1)
+        val hazelcastConfig = Optional.ofNullable(hazelcastConfigRepository.findBy(config))
             .orElse(
                 HazelcastConfig(
-                    id = hazelcastConnection,
-                    sequence = -1
+                    id = hazelcastConnection, deployEnv = deployEnv, sequence = -1
                 )
             )
 
         val updateSequence: ((Long) -> Unit) = {
             hazelcastConfig.sequence = it
-            hazelcastConfigRepository.save(hazelcastConfig)
+            hazelcastConfigRepository.saveBy(hazelcastConfig)
         }
 
         val clientConfig = ClientConfig()
         val networkConfig = clientConfig.networkConfig
         networkConfig.addresses = hazelcastConnection.split(",")
+
 
         val connectionRetryConfig = clientConfig.connectionStrategyConfig.connectionRetryConfig
         connectionRetryConfig.clusterConnectTimeoutMillis = hazelcastConnectionTimeout.toMillis()

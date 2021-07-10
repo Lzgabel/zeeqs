@@ -6,12 +6,13 @@ zeebe:
     worker:
       hazelcast:
         # 连接点，多个逗号分隔
-        connection: localhost:5701,127.0.0.1:5701
+        connection: 127.0.0.1:5701
         connectionTimeout: PT1M
         ringbuffer: zeebe
         connectionInitialBackoff: PT15S
         connectionBackoffMultiplier: 2.0
         connectionMaxBackoff: PT30S
+        deployEnv: test
 
 
 
