@@ -15,6 +15,12 @@ zeebe:
         deployEnv: test
 
 
+      zeeqs:
+        address: 172.21.2.185:9876
+        accessKey: 13343
+        accessSecret: 13343
+        topic: TEST_ZEEBE_ZEEQS_DATA_EXPORTER
+        groupId: TEST_GID_ZEEBE_ZEEQS_DATA_EXPORTER
 
 
 spring:
