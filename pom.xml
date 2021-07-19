@@ -21,6 +21,7 @@
     <module>data</module>
     <module>graphql-api</module>
     <module>hazelcast-importer</module>
+    <module>zeeqs-importer</module>
     <module>app</module>
   </modules>
 

@@ -57,6 +57,12 @@
       <artifactId>diamond-spring-client</artifactId>
       <version>1.0.4</version>
     </dependency>
+      <dependency>
+          <groupId>io.zeebe.zeeqs</groupId>
+          <artifactId>zeeqs-importer</artifactId>
+          <version>1.0.0</version>
+          <scope>compile</scope>
+      </dependency>
 
   </dependencies>
 
