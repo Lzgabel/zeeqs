@@ -1,9 +1,6 @@
 package io.zeebe.zeeqs.importer.mq
 
-import com.aliyun.openservices.ons.api.Action
-import com.aliyun.openservices.ons.api.ONSFactory
-import com.aliyun.openservices.ons.api.PropertyKeyConst
-import com.aliyun.openservices.ons.api.PropertyValueConst
+import com.aliyun.openservices.ons.api.*
 import com.google.protobuf.InvalidProtocolBufferException
 import com.google.protobuf.Struct
 import com.google.protobuf.Value
@@ -11,11 +8,13 @@ import io.zeebe.exporter.proto.Schema
 import io.zeebe.exporter.proto.Schema.*
 import io.zeebe.exporter.proto.Schema.RecordMetadata.RecordType
 import io.zeebe.zeeqs.data.entity.*
+import io.zeebe.zeeqs.data.entity.Message
 import io.zeebe.zeeqs.data.entity.Timer
 import io.zeebe.zeeqs.data.repository.*
 import org.springframework.stereotype.Component
 import java.util.*
 import java.util.function.Consumer
+
 
 @Component
 class ZeeqsImporter(
@@ -103,17 +102,14 @@ class ZeeqsImporter(
                 .build()
 
 
-
-        val properties: Properties = Properties()
-        properties.put(PropertyKeyConst.GROUP_ID, zeeqsProperties.groupId)
-        properties.put(PropertyKeyConst.NAMESRV_ADDR, zeeqsProperties.address)
-        properties.put(PropertyKeyConst.SecretKey, zeeqsProperties.accessKey)
-        properties.put(PropertyKeyConst.AccessKey, zeeqsProperties.accessSecret)
-        properties.put(PropertyKeyConst.ConsumeThreadNums, 1)
-        properties.put(PropertyKeyConst.MessageModel, PropertyValueConst.CLUSTERING)
+        val properties = Properties()
+        properties[PropertyKeyConst.GROUP_ID] = zeeqsProperties.groupId
+        properties[PropertyKeyConst.AccessKey] = zeeqsProperties.accessKey
+        properties[PropertyKeyConst.SecretKey] = zeeqsProperties.accessSecret
+        properties[PropertyKeyConst.NAMESRV_ADDR] = zeeqsProperties.address
+        properties[PropertyKeyConst.ConsumeThreadNums] = 1
 
         consumer = ONSFactory.createConsumer(properties)
-
         consumer?.subscribe(zeeqsProperties.topic, "*") { message, consumeContext ->
             try {
                 val genericRecord: Record = Record.parseFrom(message.body)
