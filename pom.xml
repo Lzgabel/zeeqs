@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.camunda</groupId>
     <artifactId>camunda-release-parent</artifactId>
-    <version>3.8.1</version>
+    <version>3.9.1</version>
     <!-- do not remove empty tag - http://jira.codehaus.org/browse/MNG-4687 -->
     <relativePath />
   </parent>
@@ -26,21 +26,21 @@
   </modules>
 
   <properties>
-    <kotlin.version>1.5.20</kotlin.version>
+    <kotlin.version>1.5.31</kotlin.version>
 
-    <zeebe.version>xhzy-1.0.0</zeebe.version>
+    <zeebe.version>xhzy-1.2.1</zeebe.version>
 
-    <spring.boot.version>2.5.2</spring.boot.version>
+    <spring.boot.version>2.5.6</spring.boot.version>
 
     <hazelcast.exporter.version>xhzy-1.0.0</hazelcast.exporter.version>
     <!-- pin Hazelcast version because of spring-boot-dependencies -->
-    <version.hazelcast>4.2.1</version.hazelcast>
+    <version.hazelcast>5.0</version.hazelcast>
 
     <version.graphql>8.1.1</version.graphql>
     <version.graphql.tools>6.3.0</version.graphql.tools>
 
     <zeebe-test-container.version>3.0.0</zeebe-test-container.version>
-    <test-container.version>1.15.3</test-container.version>
+    <test-container.version>1.16.2</test-container.version>
 
     <!-- release parent settings -->
     <version.java>11</version.java>
@@ -131,6 +131,11 @@
       <dependency>
         <groupId>org.testcontainers</groupId>
         <artifactId>junit-jupiter</artifactId>
+        <version>${test-container.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>postgresql</artifactId>
         <version>${test-container.version}</version>
       </dependency>
 
