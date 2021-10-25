@@ -11,5 +11,6 @@ data class HazelcastProperties(
         val ringbuffer: String = "zeebe",
         val connectionInitialBackoff: String = "PT15S",
         val connectionBackoffMultiplier: Double = 2.0,
-        val connectionMaxBackoff: String = "PT30S"
+        val connectionMaxBackoff: String = "PT30S",
+        val deployEnv: String = "test"
 )

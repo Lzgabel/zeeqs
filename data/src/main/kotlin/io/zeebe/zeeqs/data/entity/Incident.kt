@@ -5,16 +5,17 @@ import javax.persistence.Enumerated
 import javax.persistence.EnumType
 import javax.persistence.Id
 import javax.persistence.Lob
+import javax.persistence.Column
 
 @Entity
 class Incident(
-    @Id val key: Long,
-    val position: Long,
-    val errorType: String,
-    @Lob val errorMessage: String,
-    val processInstanceKey: Long,
-    val elementInstanceKey: Long,
-    val jobKey: Long?
+        @Id @Column(name="`key`") val key: Long,
+        val position: Long,
+        val errorType: String,
+        @Lob val errorMessage: String,
+        val processInstanceKey: Long,
+        val elementInstanceKey: Long,
+        val jobKey: Long?
 ) {
 
     @Enumerated(EnumType.STRING)

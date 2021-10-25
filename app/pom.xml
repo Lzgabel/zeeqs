@@ -5,7 +5,7 @@
   <parent>
     <groupId>io.zeebe.zeeqs</groupId>
     <artifactId>zeeqs-root</artifactId>
-    <version>2.1.1-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>app</artifactId>
@@ -35,6 +35,12 @@
     </dependency>
 
     <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.47</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <scope>runtime</scope>
@@ -45,6 +51,24 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <!--配置中心-->
+    <dependency>
+      <artifactId>shaman-configmap</artifactId>
+      <version>0.0.8-SNAPSHOT</version>
+      <groupId>com.shuwen.ops</groupId>
+    </dependency>
+    <dependency>
+      <groupId>com.shuwen.diamond</groupId>
+      <artifactId>diamond-spring-client</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+      <dependency>
+          <groupId>io.zeebe.zeeqs</groupId>
+          <artifactId>zeeqs-importer</artifactId>
+          <version>1.0.0</version>
+          <scope>compile</scope>
+      </dependency>
 
   </dependencies>
 
@@ -87,6 +111,111 @@
             <goals>
               <goal>repackage</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>appassembler-maven-plugin</artifactId>
+        <configuration>
+          <configurationDirectory>config</configurationDirectory>
+          <copyConfigurationDirectory>true</copyConfigurationDirectory>
+          <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+          <!-- lib目录中jar的存放规则，默认是${groupId}/${artifactId}的目录格式，flat表示直接把jar放到lib目录 -->
+          <repositoryLayout>flat</repositoryLayout>
+          <useWildcardClassPath>true</useWildcardClassPath>
+          <assembleDirectory>${project.build.directory}/zeeqs-${project.version}</assembleDirectory>
+          <!-- 打包的jar，以及maven依赖的jar放到这个目录里面 -->
+          <repositoryName>lib</repositoryName>
+          <!-- 跳过生成依赖包 -->
+          <generateRepository>false</generateRepository>
+          <!-- 可执行脚本的目录 -->
+          <binFolder>bin</binFolder>
+          <!-- 生成linux, windows两种平台的执行脚本 -->
+          <platforms>
+            <platform>windows</platform>
+            <platform>unix</platform>
+          </platforms>
+          <programs>
+            <program>
+              <mainClass>org.springframework.boot.loader.JarLauncher</mainClass>
+              <id>zeeqs</id>
+            </program>
+          </programs>
+        </configuration>
+        <executions>
+          <execution>
+            <id>assemble</id>
+            <phase>package</phase>
+            <goals>
+              <goal>assemble</goal>
+            </goals>
+            <configuration>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>appassembler-maven-plugin</artifactId>
+        <configuration>
+          <configurationDirectory>config</configurationDirectory>
+          <!-- 从哪里拷贝配置文件 (默认src/main/config) -->
+          <configurationSourceDirectory>src/main/resources</configurationSourceDirectory>
+          <copyConfigurationDirectory>true</copyConfigurationDirectory>
+          <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+          <extraJvmArguments>
+            -Xms128m
+            --illegal-access=deny
+          </extraJvmArguments>
+          <repositoryLayout>flat</repositoryLayout>
+          <useWildcardClassPath>true</useWildcardClassPath>
+          <repositoryName>lib</repositoryName>
+          <assembleDirectory>${project.build.directory}/zeebe-zeeqs</assembleDirectory>
+          <platforms>
+            <platform>windows</platform>
+            <platform>unix</platform>
+          </platforms>
+          <programs>
+            <program>
+              <mainClass>org.springframework.boot.loader.JarLauncher</mainClass>
+              <id>zeeqs</id>
+            </program>
+          </programs>
+        </configuration>
+        <executions>
+          <execution>
+            <id>assemble</id>
+            <phase>package</phase>
+            <goals>
+              <goal>assemble</goal>
+            </goals>
+            <configuration>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>assemble</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <attach>true</attach>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>${project.basedir}/assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
           </execution>
         </executions>
       </plugin>

@@ -17,8 +17,8 @@ import java.time.Instant
 @SpringBootTest
 @TestConfiguration
 class ProcessServiceTest(
-    @Autowired val processService: ProcessService,
-    @Autowired val processRepository: ProcessRepository
+        @Autowired val processService: ProcessService,
+        @Autowired val processRepository: ProcessRepository
 ) {
 
     @Test
